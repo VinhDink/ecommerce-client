@@ -1,0 +1,17 @@
+:root{
+    --bgColor: rgb(0, 0, 0);
+    --greenHero: #93e4c1;
+    --greenHeroHover: rgb(99, 231, 99);
+}
+
+.card {
+    height: 130px;
+    overflow: hidden;
+    border: none;
+    border-radius: 15px
+}
+
+.imagename {
+    font-size: 14px;
+    font-weight: bold
+}

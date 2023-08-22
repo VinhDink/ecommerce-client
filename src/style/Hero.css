@@ -1,0 +1,21 @@
+:root{
+    --bgColor: rgb(0, 0, 0);
+    --greenHero: #93e4c1;
+    --greenHeroHover: rgb(99, 231, 99);
+}
+
+.buttonHero {
+    background-color: var(--greenHero);
+    border-color: var(--greenHero);
+}
+
+.buttonHero:hover{
+    background-color: var(--greenHeroHover);
+    border-color: var(--greenHeroHover);
+}
+
+.buttonHero:active::before, 
+.buttonHero:active::after {
+    background-color: var(--greenHeroHover);
+    border-color: var(--greenHeroHover);
+}
