@@ -14,7 +14,7 @@ const CategoriesLine = () => {
                     <div class="flex-column lh-1 imagename"> 
                       <span className='ms-3'>Laptop </span>
                     </div>
-                    <div><img src={require('../../assets/LaptopCate.jpeg')} height="100" className='w-100' /></div>
+                    <div><img src={require('../../assets/LaptopCate.jpeg')} alt='Laptop Category' height="100" className='w-100' /></div>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@ const CategoriesLine = () => {
                   <div class="flex-column lh-1 imagename">
                     <span className='ms-3'>Keyboard </span>
                   </div>
-                  <div><img src={require('../../assets/KeyboardCate.jpeg')} height="100" width="100" /></div>
+                  <div><img src={require('../../assets/KeyboardCate.jpeg')} alt='Keyboard Category' height="100" width="100" /></div>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@ const CategoriesLine = () => {
                     <div class="flex-column lh-1 imagename">
                       <span className='ms-3'>Headphone </span>
                     </div>
-                    <div><img src={require('../../assets/HeadphoneCate.png')} height="100" width="100" /></div>
+                    <div><img src={require('../../assets/HeadphoneCate.png')} alt='Headphone Category' height="100" width="100" /></div>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@ const CategoriesLine = () => {
                   <div class="flex-column lh-1 imagename">
                     <span className='ms-3'>Mouse </span>
                   </div>
-                  <div><img src={require('../../assets/MouseCate.jpeg')} height="100" width="100" /></div>
+                  <div><img src={require('../../assets/MouseCate.jpeg')} alt='Mouse Category' height="100" width="100" /></div>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@ const CategoriesLine = () => {
                     <span className='ms-3'>Desktop </span>
                     <span>Screen</span>
                   </div>
-                  <div><img src={require('../../assets/ScreenCate.jpg')} height="100" width="120" /></div>
+                  <div><img src={require('../../assets/ScreenCate.jpg')} alt='Desktop Screen Category' height="100" width="120" /></div>
                 </div>
             </div>
         </div>
