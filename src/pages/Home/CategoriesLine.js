@@ -7,15 +7,14 @@ const CategoriesLine = () => {
   return (
     <>
       <div className="cateHeader text-center mb-5 fs-2 fw-bold">Browse All Catgories</div>
-      <div class="row mt-2 g-4 justify-content-center">
+      <div class="row mt-2 g-4">
         <div class="col-md-3">
             <div class="card shadow-lg p-1">
                 <div class="d-flex justify-content-between align-items-center p-2">
                     <div class="flex-column lh-1 imagename"> 
-                      <span className='ms-3'>Graphic </span>
-                      <span>Card</span>
+                      <span className='ms-3'>Laptop </span>
                     </div>
-                    <div><img src={require('../../assets/GpuCate.webp')} height="100" className='w-100' /></div>
+                    <div><img src={require('../../assets/LaptopCate.jpeg')} height="100" className='w-100' /></div>
                 </div>
             </div>
         </div>
@@ -23,9 +22,9 @@ const CategoriesLine = () => {
             <div class="card shadow-lg p-2">
                 <div class="d-flex justify-content-between align-items-center p-2">
                   <div class="flex-column lh-1 imagename">
-                    <span className='ms-3'>Processor </span>
+                    <span className='ms-3'>Keyboard </span>
                   </div>
-                  <div><img src={require('../../assets/CPUCate.jpg')} height="100" width="150" /></div>
+                  <div><img src={require('../../assets/KeyboardCate.jpeg')} height="100" width="100" /></div>
                 </div>
             </div>
         </div>
@@ -33,10 +32,9 @@ const CategoriesLine = () => {
             <div class="card shadow-lg p-2">
                 <div class="d-flex justify-content-between align-items-center p-2">
                     <div class="flex-column lh-1 imagename">
-                      <span className='ms-3'>Hard </span>
-                      <span>Drive</span>
+                      <span className='ms-3'>Headphone </span>
                     </div>
-                    <div><img src={require('../../assets/HarddriveCate.png')} height="100" width="100" /></div>
+                    <div><img src={require('../../assets/HeadphoneCate.png')} height="100" width="100" /></div>
                 </div>
             </div>
         </div>
@@ -44,10 +42,30 @@ const CategoriesLine = () => {
             <div class="card shadow-lg p-2">
                 <div class="d-flex justify-content-between align-items-center p-2">
                   <div class="flex-column lh-1 imagename">
-                    <span className='ms-3'>Mobile </span>
-                    <span>Phone</span>
+                    <span className='ms-3'>Mouse </span>
                   </div>
-                  <div><img src={require('../../assets/MobileCate.jpeg')} height="100" width="100" /></div>
+                  <div><img src={require('../../assets/MouseCate.jpeg')} height="100" width="100" /></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-lg p-2">
+                <div class="d-flex justify-content-between align-items-center p-2">
+                  <div class="flex-column lh-1 imagename">
+                    <span className='ms-3'>Desktop </span>
+                    <span>Screen</span>
+                  </div>
+                  <div><img src={require('../../assets/ScreenCate.jpg')} height="100" width="120" /></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-lg p-2">
+                <div class="d-flex justify-content-between align-items-center p-2 my-auto">
+                  <div class="flex-column lh-1 imagename">
+                    <span className='ms-3'>More </span>
+                  </div>
+                  <div><img src={require('../../assets/MoreCate.png')} alt='Categories icons created by alkhalifi design - Flaticon' height="50" width="50" /></div>
                 </div>
             </div>
         </div>
