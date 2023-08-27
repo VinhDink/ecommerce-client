@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Checkbox from '../../components/Checkbox';
+import './SortingFuntion'
 
 const categories = [
   {
@@ -43,16 +44,32 @@ const FilterSection = () => {
       <Checkbox key={c.id} data={c}/>
     )
   })
+
+  const applyFilters = () => {
+    let rangeValue = document.getElementById('customRange').ariaValueMax;
+
+  }
+
   return (
     <>
-        {/* <div className='col-3 border-2 border-end'></div> */}
         <div class="col-2">
-          <h4 className='m-0 ms-4 mb-4'>Filter by: </h4>
-            <div className='d-flex flex-column'>
-              <div className='ms-5'>
+          <h4 className='m-0 ms-4 mb-4'>Filter with: </h4>
+            <div className='d-flex flex-column ms-5 me-5 mb-5'>
+              <div className='filterOpts'>
                 {filterOp}
               </div>
             </div>
+          <h4 className='m-0 ms-4 mb-4'>Sort by: </h4>
+          <div className='d-flex flex-column ms-5 me-5 mb-5'>
+              <div className='SortRange'>
+                <label for="customRange" className="form-label">Price: $&nbsp;</label>
+                <span id="displayRange">0</span>
+              </div>
+              <input type="range" className="form-range" min="0" max="5000" step="1" id="customRange"/>
+          </div>
+          <div className='ms-4 mb-4'>
+            <button className='btn btn-success btn-sm w-100' onClick={applyFilters}>Apply</button>
+          </div>
         </div>
     </>
   )
