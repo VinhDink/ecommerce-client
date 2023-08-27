@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import HomePage from './layouts/HomePage'
+import BrowsingPage from './layouts/BrowsingPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <HomePage />
+    <BrowsingPage />
   </React.StrictMode>
 );
 

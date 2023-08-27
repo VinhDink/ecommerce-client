@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import  '../../style/common.css';
 import '../../style/Hero.css';
 
 const HeroSection = () => {

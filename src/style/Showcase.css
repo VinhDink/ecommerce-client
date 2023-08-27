@@ -1,0 +1,24 @@
+.shadowprice {
+    box-shadow: 1rem 0rem 3rem rgba(0,0,0,.175);
+    border: 2px dotted var(--defaultOrange);
+}
+
+.shadowproduct {
+    box-shadow: 0rem 1rem 3rem rgba(0,0,0,.175);
+}
+
+.buynowbutton {
+    border-color: var(--defaultOrangeBorder);
+    background-color: var(--defaultOrange) ;
+} 
+
+.addtocartbutton {
+    border-color: var(--defaultYellowBorder);
+    background-color: var(--defaultYellow) ;
+}
+
+.col.m-0.p-0 > img.showcaseimg{
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+}
