@@ -67,7 +67,7 @@ const FilterSection = () => {
               </div>
               <input type="range" className="form-range" min="0" max="5000" step="1" id="customRange"/>
           </div>
-          <div className='ms-4 mb-4'>
+          <div className='ms-4 me-2 mb-4'>
             <button className='btn btn-success btn-sm w-100' onClick={applyFilters}>Apply</button>
           </div>
         </div>
