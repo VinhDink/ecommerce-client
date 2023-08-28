@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import { useState } from 'react';
 import Checkbox from '../../components/Checkbox';
-import './SortingFuntion'
 
 const categories = [
   {
@@ -39,14 +39,22 @@ const categories = [
 ]
 
 const FilterSection = () => {
+  const [rangeValue, setRangeValue] = useState(0);
+
+  const handleRangeChange = (event) => {
+    const newValue = parseInt(event.target.value);
+    setRangeValue(newValue);
+  };
+
+
   const filterOp = categories.map((c) => {
     return (
       <Checkbox key={c.id} data={c}/>
     )
   })
 
-  const applyFilters = () => {
-    let rangeValue = document.getElementById('customRange').ariaValueMax;
+  const applyFilters = () => {  
+    let rangeValue = document.getElementById('customRange').value;
 
   }
 
@@ -63,12 +71,12 @@ const FilterSection = () => {
           <div className='d-flex flex-column ms-5 me-5 mb-5'>
               <div className='SortRange'>
                 <label for="customRange" className="form-label">Price: $&nbsp;</label>
-                <span id="displayRange">0</span>
+                <span>{rangeValue}</span>
               </div>
-              <input type="range" className="form-range" min="0" max="5000" step="1" id="customRange"/>
+              <input type="range" className="form-range" min="0" max="5000" step="1" id="customRange" value={rangeValue} onChange={handleRangeChange}/>
           </div>
           <div className='ms-4 me-2 mb-4'>
-            <button className='btn btn-success btn-sm w-100' onClick={applyFilters}>Apply</button>
+            <button className='btn btn-success btn-sm w-100'>Apply</button>
           </div>
         </div>
     </>
