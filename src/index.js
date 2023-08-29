@@ -4,11 +4,12 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import HomePage from './layouts/HomePage'
 import BrowsingPage from './layouts/BrowsingPage';
+import BrandCustomerPage from './layouts/BrandCustomerPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowsingPage />
+    <BrandCustomerPage />
   </React.StrictMode>
 );
 
