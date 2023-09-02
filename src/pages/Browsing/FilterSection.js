@@ -60,7 +60,7 @@ const FilterSection = () => {
 
   return (
     <>
-        <div class="col-2 ">
+        <div class="col-2">
           <h4 className='m-0 ms-4 mb-4'>Filter with: </h4>
             <div className='d-flex flex-column ms-5 me-5 mb-5'>
               <div className='filterOpts'>

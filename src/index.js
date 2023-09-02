@@ -7,11 +7,14 @@ import Login from './pages/common/Login';
 import Header from './components/Header'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Footer from './components/Footer';
+import HomePage from './layouts/HomePage'
+import BrowsingPage from './layouts/BrowsingPage';
+import BrandCustomerPage from './layouts/BrandCustomerPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App/>
+    <BrandCustomerPage />
   </React.StrictMode>
 );
 
