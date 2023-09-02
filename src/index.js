@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import App from './App';
 import Login from './pages/common/Login';
 import Header from './components/Header'
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -10,7 +11,7 @@ import Footer from './components/Footer';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Footer />
+    <App/>
   </React.StrictMode>
 );
 

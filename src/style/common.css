@@ -1,0 +1,11 @@
+:root{
+    --bgColor: rgb(0, 0, 0);
+    --greenHero: #93e4c1;
+    --greenHeroHover: rgb(99, 231, 99);
+    --defaultGrey: #adb5bd;
+    --defaultOrange: #FFA41C;
+    --defaultOrangeBorder: #FF8F00;
+    --defaultYellow: #FFD814;
+    --defaultYellowBorder: #FCD200;
+
+}
