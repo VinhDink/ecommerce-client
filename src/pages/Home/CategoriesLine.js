@@ -60,6 +60,7 @@ const CategoriesLine = () => {
             </div>
         </div>
         <div class="col-md-3">
+          <Link to="/browsing">
             <div class="card shadow-lg p-2">
                 <div class="d-flex justify-content-between align-items-center p-2 my-auto">
                   <div class="flex-column lh-1 imagename">
@@ -68,6 +69,7 @@ const CategoriesLine = () => {
                   <div><img src={require('../../assets/MoreCate.png')} alt='Categories icons created by alkhalifi design - Flaticon' height="50" width="50" /></div>
                 </div>
             </div>
+          </Link>
         </div>
       </div>
     </>

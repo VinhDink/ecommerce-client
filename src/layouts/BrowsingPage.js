@@ -12,7 +12,7 @@ const BrowsingPage = () => {
     <>
         <Header />
         <HeadingSection />
-        <div className='row g-4 mt-3'>
+        <div className='row g-4 mt-3 '>
             <FilterSection />
             <ShowcaseSection />
         </div>
