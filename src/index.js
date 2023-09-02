@@ -15,7 +15,6 @@ import './style/common.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App/>
     <OrderManager />
   </React.StrictMode>
 );
