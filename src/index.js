@@ -6,11 +6,15 @@ import Login from './pages/common/Login';
 import Header from './components/Header'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Footer from './components/Footer';
+import ProductManager from './pages/seller/ProductManager';
+import CreateProduct from './pages/seller/CreateProduct';
+import OrderManager from './pages/seller/OrderManager';
+import './style/common.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Footer />
+    <OrderManager />
   </React.StrictMode>
 );
 
