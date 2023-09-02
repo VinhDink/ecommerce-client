@@ -1,0 +1,31 @@
+.om__button-success {
+    background-color: #93e4c1;
+    color: white;
+    border: none;
+    padding:10px
+}
+
+.page__box {
+    min-height: 100vh;
+}
+
+.table__box {
+    overflow-x: scroll;
+    border-spacing: 0;
+    width:100%; 
+}
+
+.om__button-success:hover {
+    background-color: #16e189;
+}
+
+.om__button-danger {
+    background-color: rgb(252, 132, 132);
+    color: white;
+    border: none;
+    padding:10px
+}
+
+.om__button-danger:hover {
+    background-color: rgb(255, 66, 66);
+}
