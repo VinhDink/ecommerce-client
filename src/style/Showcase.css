@@ -1,0 +1,15 @@
+.buynowbutton {
+    border-color: var(--defaultOrangeBorder);
+    background-color: var(--defaultOrange) ;
+} 
+
+.addtocartbutton {
+    border-color: var(--defaultYellowBorder);
+    background-color: var(--defaultYellow) ;
+}
+
+img.showcaseimg{
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+}

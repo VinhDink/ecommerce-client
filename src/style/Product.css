@@ -1,0 +1,24 @@
+.categories > img.imgCat {
+    max-width: 70%;
+}
+
+.row > .categories {
+    border: 0.2rem solid white;
+    border-radius: 1rem;
+}
+
+.btnCate {
+    background-color: var(--greenHero);
+    border-color: var(--greenHero);
+}
+
+.btnCate:hover{
+    background-color: var(--greenHeroHover);
+    border-color: var(--greenHeroHover);
+}
+
+.btnCate:active::before, 
+.btnCate:active::after {
+    background-color: var(--greenHeroHover);
+    border-color: var(--greenHeroHover);
+}

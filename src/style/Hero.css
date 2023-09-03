@@ -1,0 +1,15 @@
+.buttonHero {
+    background-color: var(--greenHero);
+    border-color: var(--greenHero);
+}
+
+.buttonHero:hover{
+    background-color: var(--greenHeroHover);
+    border-color: var(--greenHeroHover);
+}
+
+.buttonHero:active::before, 
+.buttonHero:active::after {
+    background-color: var(--greenHeroHover);
+    border-color: var(--greenHeroHover);
+}
