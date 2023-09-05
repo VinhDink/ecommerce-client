@@ -1,4 +1,4 @@
-import "../../style/register.css";
+import "../../style/sellerRegister.css";
 
 const Register = () => {
   return (
@@ -7,6 +7,14 @@ const Register = () => {
         <h1 class="form__title">register</h1>
         <div class="form__input-box">
           <label for="username" class="form__input-label">Email</label>
+          <input type="text" class="form__input" />
+        </div>
+        <div class="form__input-box">
+          <label for="phone" class="form__input-label">Phone number</label>
+          <input type="text" class="form__input" />
+        </div>
+        <div class="form__input-box">
+          <label for="business" class="form__input-label">Business name</label>
           <input type="text" class="form__input" />
         </div>
         <div class="form__input-box">

@@ -11,11 +11,13 @@ import ProductManager from './pages/seller/ProductManager';
 import CreateProduct from './pages/seller/CreateProduct';
 import OrderManager from './pages/seller/OrderManager';
 import './style/common.css';
+import SellerRegister from './pages/common/SellerRegister';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <SellerRegister />
   </React.StrictMode>
 );
 
