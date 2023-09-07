@@ -16,7 +16,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/login/customer", formData);
+      const response = await axios.post("/login/seller", formData);
       console.log(response.data);
       localStorage.setItem("token", response.data.token);
     } catch (error) {
@@ -27,7 +27,7 @@ const Login = () => {
   return (
     <div class="form">
       <form class="form__form" onSubmit={handleSubmit}>
-        <h1 class="form__title">Login</h1>
+        <h1 class="form__title">Seller login</h1>
         <div class="form__input-box">
           <label for="email" class="form__input-label">
             Email or phone
