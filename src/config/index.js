@@ -2,7 +2,7 @@ import axios from 'axios'
 
 axios.interceptors.request.use(
     (config) => {
-      config.baseURL = process.env.AXIOS_BASE_URL;
+      config.baseURL = "https";
       config.timeout = 5000
       config.headers.Accept = 'application/json'
       return config

@@ -1,4 +1,5 @@
 import "../../style/orderManager.css";
+import axios from "../../config/index";
 
 const OrderManager = () => {
   return (
