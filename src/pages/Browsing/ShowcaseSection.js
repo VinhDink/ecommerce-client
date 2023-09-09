@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import "../../style/shop.css";
 
 const ShowcaseSection = () => {
-
+    
 
     return (
         <>

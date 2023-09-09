@@ -12,7 +12,8 @@ import CreateProduct from './pages/seller/CreateProduct';
 import OrderManager from './pages/seller/OrderManager';
 import './style/common.css';
 import SellerRegister from './pages/common/SellerRegister';
-
+import Register from './pages/common/Register';
+import SellerLogin from './pages/common/SellerLogin';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

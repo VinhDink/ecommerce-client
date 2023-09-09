@@ -1,6 +1,7 @@
 import "../../style/login.css";
 import { useState } from "react";
 import axios from "../../config";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -54,8 +55,8 @@ const Login = () => {
         </div>
         <button type="submit" class="form__button form__button--state-primary">
           Login
-        </button>
-        <div class="form__register">Create an account</div>
+        </button>      
+          <div class="form__register">Create an account</div>
       </form>
     </div>
   );
