@@ -17,7 +17,7 @@ import SellerRegister from './pages/common/SellerRegister';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <SellerRegister />
+    <ProductManager />
   </React.StrictMode>
 );
 

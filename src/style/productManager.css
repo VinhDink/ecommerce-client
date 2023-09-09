@@ -14,8 +14,7 @@
 }
 
 
-
-.modal {
+.modal, .modalAddProduct {
     display: none;
     /* Hidden by default */
     position: fixed;
@@ -68,8 +67,21 @@
     color: white;
 }
 
+.pm__form-button--state-secondary {
+    background-color: #888;
+    color: white
+}
+
 .pm__filter-sort {
     display: flex;
     align-items: center;
     gap:30px
+}
+
+.btn-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.4rem;
+    margin-left: auto;
+    width: 50%;
 }
