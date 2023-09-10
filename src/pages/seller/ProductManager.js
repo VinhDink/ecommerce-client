@@ -1,6 +1,7 @@
 import "../../style/productManager.css";
 import "../../style/common.css";
 import { useState } from "react";
+import axios from "../../config"
 
 const ProductManager = () => {
   const raw = [
@@ -292,6 +293,18 @@ const ProductManager = () => {
     setData(filterBy(data, "category", newValue));
     console.log(data);
   };
+
+  const getUser = async () => {
+    try {
+      const response = await axios.get("/me");
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  getUser();
 
   return (
     <div class="page__box">
