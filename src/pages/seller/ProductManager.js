@@ -1,8 +1,7 @@
 import "../../style/productManager.css";
 import "../../style/common.css";
-import { useEffect, useState } from "react";
-import axios from "../../config/index"
-import { get } from "mongoose";
+import { useState } from "react";
+import axios from "../../config"
 
 const ProductManager = () => {
   const raw = [
@@ -234,18 +233,6 @@ const ProductManager = () => {
   ]
 
   const [data, setData] = useState(raw);
-  const [realData, setRealData] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get('/api/manager/showAllProduct')
-      .then((res) => {
-        setRealData(res.data);
-      })
-      .catch((err) => {
-        console.log('Error from ShowBookList');
-      });
-  }, []);
 
   const openModal = () => {
     document.querySelector(".modal").style.display = "block";
@@ -291,95 +278,6 @@ const ProductManager = () => {
 
   const [selectedValue, setSelectedValue] = useState("");
 
-  const [selectedCate, setSelectedCate] = useState('')
-    
-  const [pData, setPData] = useState({name:'', imgURL: null, descrip:'', brand:'', cost: 0});
-
-  const openModalAddProduct = (e) => {
-    e.preventDefault();
-    let modalAdd = document.querySelector(".modalAddProduct");
-    modalAdd.style.display = "block";
-  }
-
-  const closeModalAddProduct = (e) => {
-    e.preventDefault();
-    let modalAdd = document.querySelector(".modalAddProduct");
-    modalAdd.style.display = "none";
-  }
-
-  const handleCateChange = (e) => {
-    const cateChange = e.target
-    setSelectedCate(cateChange);
-    console.log(selectedCate);
-    //
-  }
-
-  const categories = async() => {
-    axios.get('api/manager/product/category')
-    .then((r) => {
-      return r
-    })
-    .catch((err) => {
-      console.log("Find all categories error")
-      console.log(err)
-    })
-  }
-
-  const handleCateAddProduct = async (dataProd, selectingCategory) => {
-    axios.get('/api/manager/product/create', {
-      params: {
-        category: selectedCate,
-      },
-    })
-    .then((responceCate) => function loadingAtt(responceCate) {
-      for(let i = 0; i < (responceCate.attCate).length; i++) {
-        let newArrayAtt = [];
-        newArrayAtt.push(responceCate.attCate[i]);
-        return newArrayAtt
-      }
-    })
-    .catch((err) => console.log("Error axios selectCategory"))
-  }
-
-  const handleAddProduct = async (dataProd, selectingCategory) => {
-    setPData({...pData, category_att: handleCateAddProduct})
-    axios.post('/api/manager/product/create', {
-      params: {
-        category: selectedCate,
-      },
-      data: {
-        pData
-      }
-    })
-    .then(() => {
-      console.log(pData)
-    })
-    .catch((err) => console.log("Error axios create product"))
-    setPData({name:'', imgURL: null, descrip:'', brand:'', cost: 0, category_att: []});
-  }
-
-  const handleUpdateProduct = async (dataProd) => {
-    axios.post('/api/manager/product/update', {
-      params: {
-        id: dataProd._id,
-      },
-      data: {dataProd}
-    })
-    .then(() => console.log("Please check updating route in server"))
-    .catch((err) => console.log("Error frontend updating"))
-    setPData({name:'', imgURL: null, descrip:'', brand:'', cost: 0, category_att: []});
-  }
-  
-  const handleInputChange = (event) => {
-    console.log(event.target)
-    const { name, value } = event.target;
-    setPData({ ...pData, [name]: value });
-  }
-
-  const handleInputPhoto = (e) => [
-    setPData({...pData, imgURL: e.target.files[0]})
-  ]
-
   const handleSelectChange = (event) => {
     console.log(event.target.value);
     const newValue = event.target.value;
@@ -396,154 +294,139 @@ const ProductManager = () => {
     console.log(data);
   };
 
+  const getUser = async () => {
+    try {
+      const response = await axios.get("/me");
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  getUser();
+
   return (
-    <>
-      <div class="page__box">
-        <div class="modalAddProduct">
-          <div className="pm__modal-content">
-            <h4>Create a product</h4>
-            <select className="cate__choosing" onChange={handleCateChange}>
-              <option selected>Select a Category</option>
-              {categories.map((category) => (
-                <option key={category._id} value={category._id}>{category.name}</option>
-              ))}
-            </select>
-            <form class="pm__modal-form" encType='multipart/form-data'>
-              <label for="name">Name</label>
-              <input type="text" id="name" name="pName" placeholder="Name" value={pData.name} onChange={handleInputChange} class="pm__form-input" />
-              <label for="category">Image: </label>
-              <input type="file" id="imgURL" name="pCategory" value={pData.imgURL} onChange={(e) => handleInputPhoto(e)} />
-              <label for="brand">Brand</label>
-              <input type="text" id="brand" name="pBrand" placeholder="Brand" value={pData.brand} onChange={handleInputChange} class="pm__form-input" />
-              <label for="cost">Cost</label>
-              <input type="text" id="cost" name="pCost" placeholder="Cost" value={pData.cost} onChange={handleInputChange} class="pm__form-input" />
-              <div className="btn-group">
-                <button class="pm__form-button pm__form-button--state-primary" onClick={(e) => {handleAddProduct(pData, selectedCate); closeModalAddProduct(e)}}>Create</button>
-                <button class="pm__form-button pm__form-button--state-secondary" onClick={(e)=> {closeModalAddProduct(e)}}>Cancel</button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="modal">
-          <div class="pm__modal-content">
-            <form class="pm__modal-form">
-              <label for="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Product name"
-                class="pm__form-input"
-              />
-              <label for="category">Category</label>
-              <input
-                type="text"
-                id="category"
-                name="category"
-                placeholder="Product category"
-                class="pm__form-input"
-              />
-              <label for="brand">Brand</label>
-              <input
-                type="text"
-                id="brand"
-                name="brand"
-                placeholder="Product brand"
-                class="pm__form-input"
-              />
-              <label for="quantity">Quantity</label>
-              <input
-                type="text"
-                id="quantity"
-                name="quantity"
-                placeholder="Product quantity"
-                class="pm__form-input"
-              />
-              <label for="cost">Cost</label>
-              <input
-                type="text"
-                id="cost"
-                name="cost"
-                placeholder="Product cost"
-                class="pm__form-input"
-              />
-              <button class="pm__form-button pm__form-button--state-primary" onClick={() => {handleUpdateProduct(pData)}}>
-                Update
-              </button>
-            </form>
-          </div>
-        </div>
-        <div class="page__content">
-          <div class="page__title">
-            <h1>Product manager</h1>
-            <div class="pm__filter-sort">
-              <div>
-                Filter by Category:
-                <select
-                  name="brand"
-                  id="brand"
-                  onChange={handleFilterChange}
-                  value={filterValue}
-                >
-                  <option value="all">All</option>
-                  <option value="Laptop">Laptop</option>
-                  <option value="Screen">Screen</option>
-                  <option value="Keyboard">Keyboard</option>
-                  <option value="Mouse">Mouse</option>
-                  <option value="Header">Header</option>
-                </select>
-              </div>
-              <div>
-                Sort:
-                <select
-                  name="sort"
-                  id="sort"
-                  value={selectedValue}
-                  onChange={handleSelectChange}
-                >
-                  <option value="name">Name</option>
-                  <option value="cost">Cost</option>
-                  <option value="date">Date</option>
-                </select>
-              </div>
-            </div>
-            <button class="page__button--add" onClick={(e) => {openModalAddProduct(e)}}>Add</button>
-          </div>
-          <div>
-            <table class="table__box">
-              <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Brand</th>
-                <th>Quantity</th>
-                <th>Cost</th>
-                <th>Date</th>
-              </tr>
-              {data.map((item) => (
-                <tr>
-                  <td>{item.id}</td>
-                  <td>{item.name}</td>
-                  <td>{item.category}</td>
-                  <td>{item.brand}</td>
-                  <td>{item.quantity}</td>
-                  <td>{item.cost}</td>
-                  <td>{item.date}</td>
-                  <td class="table__action">
-                    <button class="table__update" onClick={openModal}>
-                      <i class="bi bi-arrow-up-circle"></i>
-                    </button>
-                    <button class="table__delete">
-                      <i class="bi bi-trash3-fill"></i>
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </table>
-          </div>
+    <div class="page__box">
+      <div class="modal">
+        <div class="pm__modal-content">
+          <form class="pm__modal-form">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Product name"
+              class="pm__form-input"
+            />
+            <label for="category">Category</label>
+            <input
+              type="text"
+              id="category"
+              name="category"
+              placeholder="Product category"
+              class="pm__form-input"
+            />
+            <label for="brand">Brand</label>
+            <input
+              type="text"
+              id="brand"
+              name="brand"
+              placeholder="Product brand"
+              class="pm__form-input"
+            />
+            <label for="quantity">Quantity</label>
+            <input
+              type="text"
+              id="quantity"
+              name="quantity"
+              placeholder="Product quantity"
+              class="pm__form-input"
+            />
+            <label for="cost">Cost</label>
+            <input
+              type="text"
+              id="cost"
+              name="cost"
+              placeholder="Product cost"
+              class="pm__form-input"
+            />
+            <button class="pm__form-button pm__form-button--state-primary">
+              Update
+            </button>
+          </form>
         </div>
       </div>
-    </>  
+      <div class="page__content">
+        <div class="page__title">
+          <h1>Product manager</h1>
+          <div class="pm__filter-sort">
+            <div>
+              Filter by Category:
+              <select
+                name="brand"
+                id="brand"
+                onChange={handleFilterChange}
+                value={filterValue}
+              >
+                <option value="all">All</option>
+                <option value="Laptop">Laptop</option>
+                <option value="Screen">Screen</option>
+                <option value="Keyboard">Keyboard</option>
+                <option value="Mouse">Mouse</option>
+                <option value="Header">Header</option>
+              </select>
+            </div>
+            <div>
+              Sort:
+              <select
+                name="sort"
+                id="sort"
+                value={selectedValue}
+                onChange={handleSelectChange}
+              >
+                <option value="name">Name</option>
+                <option value="cost">Cost</option>
+                <option value="date">Date</option>
+              </select>
+            </div>
+          </div>
+          <button class="page__button--add">Add</button>
+        </div>
+        <div>
+          <table class="table__box">
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Brand</th>
+              <th>Quantity</th>
+              <th>Cost</th>
+              <th>Date</th>
+            </tr>
+            {data.map((item) => (
+              <tr>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.category}</td>
+                <td>{item.brand}</td>
+                <td>{item.quantity}</td>
+                <td>{item.cost}</td>
+                <td>{item.date}</td>
+                <td class="table__action">
+                  <button class="table__update" onClick={openModal}>
+                    <i class="bi bi-arrow-up-circle"></i>
+                  </button>
+                  <button class="table__delete">
+                    <i class="bi bi-trash3-fill"></i>
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </table>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -18,7 +18,7 @@ import SellerLogin from './pages/common/SellerLogin';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ProductManager />
+    <App />
   </React.StrictMode>
 );
 

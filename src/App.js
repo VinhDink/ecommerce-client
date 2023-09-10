@@ -4,6 +4,8 @@ import HomePage from './layouts/HomePage'
 import BrowsingPage from './layouts/BrowsingPage';
 import CartPage from './layouts/CartPage';
 import ProductDetailPage from './layouts/ProductDetailPage.js';
+import ProductManagerPage from './layouts/ProductManagerPage.js';
+import SellerLoginPage from "./layouts/SellerLoginPage";
 
 function App() {
   return (
@@ -18,6 +20,12 @@ function App() {
           </Routes>
         </Router>
       </ShopContextProvider>
+      <Router>
+        <Routes>
+          <Route path="/product-manager" element={<ProductManagerPage />} />
+          <Route path="/seller-login" element={<SellerLoginPage />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
