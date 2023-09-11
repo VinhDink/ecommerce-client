@@ -46,8 +46,19 @@ const FilterSection = () => {
   const [checkedCategories, setCheckedCategories] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
   const [allProduct, setAllProduct] = useState([]);
+  const [customerId, setCustomerId] = useState('');
 
   useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await axios.get("/me");
+        console.log(response.data);
+        setCustomerId(response.data);
+        return response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    };
     const fetchAllProduct = async() => {
       await axios.get('/browsing/all')
       .then((res) => {
@@ -72,8 +83,9 @@ const FilterSection = () => {
       console.log(allCategories);
     };
     fetchAllProduct();
+    getUser();
     // fetchAllCategories();
-  }, [allCategories]);
+  }, [allCategories, customerId]);
 
   const handleRangeChange = (event) => {
     const newValue = parseInt(event.target.value);
@@ -123,7 +135,7 @@ const FilterSection = () => {
             <button className='btn btn-success btn-sm w-100' onClick={(e) => {handeSorting(e)}}>Apply</button>
           </div>
         </div>
-        <ShowcaseSection products={alteredProduct} />
+        <ShowcaseSection customerId={customerId} products={alteredProduct} />
       </div>
     </>
   )

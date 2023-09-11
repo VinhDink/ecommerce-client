@@ -6,6 +6,8 @@ import CartPage from './layouts/CartPage';
 import ProductDetailPage from './layouts/ProductDetailPage.js';
 import ProductManagerPage from './layouts/ProductManagerPage.js';
 import SellerLoginPage from "./layouts/SellerLoginPage";
+import Login from "./pages/common/Login";
+import Register from "./pages/common/Register";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Routes>
           <Route path="/product-manager" element={<ProductManagerPage />} />
           <Route path="/seller-login" element={<SellerLoginPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </div>

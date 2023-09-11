@@ -11,10 +11,21 @@ export const ProductDetails = () => {
   const pid = id.toString();
   const { addToCart, cartItems } = useContext(ShopContext);
   const [productFound, setProductFound] = useState({})
+  const [cFound, setCFound] = useState('')
 
   const cartItemCount = cartItems[pid];
 
   useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await axios.get("/me");
+        console.log(response.data);
+        setCFound(response.data);
+        return response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    };
     const fetchProduct = async () => {
       await axios.get(`/browsing/product/${pid}`)
       .then((res) => {
@@ -26,7 +37,8 @@ export const ProductDetails = () => {
       })
     };
     fetchProduct();
-  }, [pid]);
+    getUser();
+  }, [pid, cFound]);
 
   if(productFound == {}) {
     return(
@@ -51,7 +63,7 @@ export const ProductDetails = () => {
             aut praesentium aspernatur id neque voluptatibus perferendis repellat, 
             pariatur esse fuga, voluptas sequi numquam!</p>
           <p><b>Brand:</b>{brand}</p>
-          <button className="addToCartBttn" onClick={() => addToCart(pid)}>
+          <button className="addToCartBttn" onClick={() => addToCart(pid, cFound)}>
             Add To Cart {cartItemCount > 0 && <> ({cartItemCount})</>}
           </button>
         </div>

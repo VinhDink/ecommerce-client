@@ -4,7 +4,7 @@ import { Product } from "./product";
 import 'bootstrap/dist/css/bootstrap.css';
 import "../../style/shop.css";
 
-const ShowcaseSection = ({ products }) => {
+const ShowcaseSection = ({ customerId, products }) => {
     
 
     return (
@@ -13,7 +13,7 @@ const ShowcaseSection = ({ products }) => {
                 <div class="row mb-5">
                     <div className="products">
                         {products.map((p) => (
-                            <Product data={p} />
+                            <Product customerId={customerId} data={p} />
                         ))}
                     </div>
                 </div>

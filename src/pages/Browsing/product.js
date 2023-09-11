@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ShopContext } from "../../context/shop-context";
 
-export const Product = ({ data }) => {
+export const Product = ({ customerId, data }) => {
   const { addToCart, cartItems } = useContext(ShopContext);
   console.log(data._id)
 
@@ -19,7 +19,7 @@ export const Product = ({ data }) => {
           <p>{data.cost} VND</p>
         </div>
       </Link>
-      <button className="addToCartBttn" onClick={() => addToCart(data._id)}>
+      <button className="addToCartBttn" onClick={() => addToCart(data._id, customerId)}>
         Add To Cart {cartItemCount > 0 && <> ({cartItemCount})</>}
       </button>
     </div>

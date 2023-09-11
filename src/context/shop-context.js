@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { PRODUCTS } from "../data/products";
+import axios from "axios";
 
 export const ShopContext = createContext(null);
 
@@ -25,7 +26,11 @@ export const ShopContextProvider = (props) => {
     return totalAmount;
   };
 
-  const addToCart = (itemId) => {
+  const addToCart = async (itemId, customerId) => {
+    await axios.post(`/browsing/product/${itemId}}/addToCart/${customerId}`)
+    .then((res) => console.log(res.data))
+    .catch((err) => console.log("Failed to addToCart: " + err))
+
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
   };
 
