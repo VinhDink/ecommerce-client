@@ -16,7 +16,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/browsing" element={<BrowsingPage />} />
             <Route path="/cart" element={<CartPage />} />
-            <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route path="browsing/product/:id" element={<ProductDetailPage />} />
           </Routes>
         </Router>
       </ShopContextProvider>

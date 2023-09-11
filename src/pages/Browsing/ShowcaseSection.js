@@ -4,7 +4,7 @@ import { Product } from "./product";
 import 'bootstrap/dist/css/bootstrap.css';
 import "../../style/shop.css";
 
-const ShowcaseSection = () => {
+const ShowcaseSection = ({ products }) => {
     
 
     return (
@@ -12,8 +12,8 @@ const ShowcaseSection = () => {
             <div class="col border-black border-2 border-start">
                 <div class="row mb-5">
                     <div className="products">
-                        {PRODUCTS.map((product) => (
-                            <Product data={product} />
+                        {products.map((p) => (
+                            <Product data={p} />
                         ))}
                     </div>
                 </div>
