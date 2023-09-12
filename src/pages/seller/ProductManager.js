@@ -65,6 +65,8 @@ const ProductManager = () => {
         _id,
       },
     });
+    console.log(response);
+    window.location.reload();
   };
 
   window.onclick = function (event) {

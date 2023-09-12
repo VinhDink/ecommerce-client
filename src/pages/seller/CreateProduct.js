@@ -1,6 +1,6 @@
 import "../../style/createProduct.css";
 import axios from "../../config";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const CreateProduct = () => {
 
@@ -9,18 +9,24 @@ const CreateProduct = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [brand, setBrand] = useState("");
   const [cost, setCost] = useState("");
+  const [loading, setLoading] = useState(true);
   const [image, setImage] = useState("");
 
-  const getCategory = async () => {
-    try {
-      const response = await axios.get("/category");
-      console.log(response.data);
-      setCategory(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  getCategory();
+
+  useEffect(() => {
+    const getCategory = async () => {
+      try {
+        const response = await axios.get("/category");
+        console.log(response.data);
+        setLoading(false)
+        setCategory(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getCategory();
+  }, []);
+ 
 
   const handleSubmit = async (event) => {
     event.preventDefault();

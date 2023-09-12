@@ -3,6 +3,7 @@ import axios from "../../config/index";
 import { useState, useEffect } from "react";
 
 const OrderManager = () => {
+  const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState([]);
 
   const getUser = async () => {
@@ -23,6 +24,7 @@ const OrderManager = () => {
         });
         console.log(response.data);
         setOrder(response.data);
+        setLoading(false)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -38,6 +40,7 @@ const OrderManager = () => {
         status: status,
       });
       console.log(response.data);
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
