@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState } from 'react';
 import axios from 'axios';
 import Checkbox from '../../components/Checkbox';
 import ShowcaseSection from './ShowcaseSection';
+import { ShopContext } from '../../context/shop-context';
+import { Product } from './product';
 
 const categories = [
   {
@@ -44,78 +46,48 @@ const FilterSection = () => {
   const [rangeValue, setRangeValue] = useState(0);
   const [alteredProduct, setAlteredProduct] = useState([]);
   const [checkedCategories, setCheckedCategories] = useState([]);
-  const [allCategories, setAllCategories] = useState([]);
-  const [allProduct, setAllProduct] = useState([]);
-  const [customerId, setCustomerId] = useState('');
+  const { userId, PRODUCTS, allCategories, fetchAllProduct, getUser, fetchAllCategories} = useContext(ShopContext)
+  
 
   useEffect(() => {
-    const getUser = async () => {
-      try {
-        const response = await axios.get("/me");
-        console.log(response.data);
-        setCustomerId(response.data);
-        return response.data;
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    const fetchAllProduct = async() => {
-      await axios.get('/browsing/all')
-      .then((res) => {
-        setAllProduct(res.data);
-        setAlteredProduct(res.data);
-      })
-      .catch((err) => {
-        console.log('Error from browsing product');
-        throw err
-      });
-    };
-    const fetchAllCategories = async() => {
-      await axios.get(`/browsing/categories`)
-      .then((res) => {
-        setAllCategories(res.data)
-        console.log("Found: " + res.data)
-      })
-      .catch((err) => {
-        console.log("Find all Categories error")
-        throw err
-      })
-      console.log(allCategories);
-    };
     fetchAllProduct();
     getUser();
-    // fetchAllCategories();
-  }, [allCategories, customerId]);
+    fetchAllCategories();
+    setAlteredProduct(PRODUCTS)
+  }, []);
 
   const handleRangeChange = (event) => {
     const newValue = parseInt(event.target.value);
     setRangeValue(newValue);
   };
 
-  const handleFiltersChange = (c) => {
-    if (checkedCategories.includes(c)) {
-      setCheckedCategories(checkedCategories.filter((cate) => {return cate.id !== c.id}));
+  const handleFiltersChange = (cid) => {
+    if (checkedCategories.includes(cid)) {
+      setCheckedCategories(checkedCategories.filter((cate) => {return cate !== cid}));
     } else {
-      setCheckedCategories([...checkedCategories, c]);
+      setCheckedCategories([...checkedCategories, cid]);
     }
     console.log(checkedCategories)
   };
 
-  const filterOp = categories.map((c) => {
+  const filterOp = allCategories.map((c) => {
     return (
-      <Checkbox key={c.id} data={c} onChange={() => {handleFiltersChange(c)}}/>
+      <Checkbox key={c._id} data={c} onChange={() => {handleFiltersChange(c._id)}}/>
     )
   })
 
   const handeSorting = (e) => {
     e.preventDefault()
-    const sortedArray = allProduct.filter((p) => {return p.cost > rangeValue})
-    setAlteredProduct(sortedArray)
+    const filteredArray = PRODUCTS.filter((p) => {
+      return checkedCategories.includes(p.cateId)
+    })
+    const sortedArray = PRODUCTS.filter((p) => {return p.cost > rangeValue})
+    setAlteredProduct(sortedArray, filteredArray)
   }
 
   return (
     <>
-      <div className='row g-4 mt-3 '>
+      <div className='row g-4 mt-3 ' onRefresh={() => {fetchAllProduct(); getUser()}}>
         <div class="col-2 ">
           <h4 className='m-0 ms-4 mb-4'>Filter with: </h4>
             <div className='d-flex flex-column ms-5 me-5 mb-5'>
@@ -135,7 +107,7 @@ const FilterSection = () => {
             <button className='btn btn-success btn-sm w-100' onClick={(e) => {handeSorting(e)}}>Apply</button>
           </div>
         </div>
-        <ShowcaseSection customerId={customerId} products={alteredProduct} />
+        <ShowcaseSection products={alteredProduct} />
       </div>
     </>
   )

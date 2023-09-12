@@ -3,9 +3,7 @@ import { Product } from "./product";
 import 'bootstrap/dist/css/bootstrap.css';
 import "../../style/shop.css";
 
-const ShowcaseSection = ({ customerId, products }) => {
-    
-
+const ShowcaseSection = ({ products }) => {
     return (
         <>
             <div class="col border-black border-2 border-start">

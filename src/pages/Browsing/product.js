@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { ShopContext } from "../../context/shop-context";
 
 export const Product = ({ data }) => {
-  const { addToCart, cartItems, getUser} = useContext(ShopContext);
-  console.log(data._id)
+  const { userId, addToCart, cartItems, getUser} = useContext(ShopContext);
 
   const cartItemCount = cartItems[data._id];
 
@@ -19,7 +18,7 @@ export const Product = ({ data }) => {
           <p>{data.cost} VND</p>
         </div>
       </Link>
-      <button className="addToCartBttn" onClick={() => {console.log("click"); addToCart(data._id, getUser())}}>
+      <button className="addToCartBttn" onClick={() => {console.log(`/browsing/product/${data._id}/addToCart/${userId}`); addToCart(data._id, userId)}}>
         Add To Cart {cartItemCount > 0 && <> ({cartItemCount})</>}
       </button>
     </div>
