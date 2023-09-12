@@ -41,7 +41,11 @@ const Header = () => {
         <div class="header__cart">
           <i class="bi bi-bag"></i>
         </div>
-        <div>Login | Register</div>
+        <div>
+          <Link to="/seller-login"
+          style={{ textDecoration: "none" }}>Login</Link> | 
+          <Link to="/seller-register"
+          style={{ textDecoration: "none" }}>Register</Link></div>
         <div className="links">
           <Link
             to="/browsing"
