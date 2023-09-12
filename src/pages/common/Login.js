@@ -56,7 +56,7 @@ const Login = () => {
         <button type="submit" class="form__button form__button--state-primary">
           Login
         </button>      
-          <div class="form__register">Create an account</div>
+          <Link to={'/register'} class="form__register">Create an account</Link>
       </form>
     </div>
   );
