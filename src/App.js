@@ -8,6 +8,9 @@ import ProductManagerPage from './layouts/ProductManagerPage.js';
 import SellerLoginPage from "./layouts/SellerLoginPage";
 import Login from "./pages/common/Login";
 import Register from "./pages/common/Register";
+import CreateProduct from "./pages/seller/CreateProduct";
+import OrderManagerPage from "./layouts/OrderManagerPage.js";
+import SellerRegisterPage from "./layouts/SellerRegisterPage"
 
 function App() {
   return (
@@ -26,6 +29,15 @@ function App() {
           </Routes>
         </Router>
       </ShopContextProvider>
+      <Router>
+        <Routes>
+          <Route path="/product-manager" element={<ProductManagerPage />} />
+          <Route path="/seller-login" element={<SellerLoginPage />} />
+          <Route path="/create-product" element={<CreateProduct />} />
+          <Route path="/order-manager" element={<OrderManagerPage />} />
+          <Route path="/seller-register" element={<SellerRegisterPage />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

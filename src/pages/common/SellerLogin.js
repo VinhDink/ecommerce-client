@@ -2,6 +2,7 @@ import "../../style/login.css";
 import { useState } from "react";
 import axios from "../../config";
 import {useNavigate} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -59,7 +60,8 @@ const Login = () => {
         <button type="submit" class="form__button form__button--state-primary">
           Login
         </button>
-        <div class="form__register">Create an account</div>
+        <Link to="/seller-register"
+          style={{ textDecoration: "none" }}><div class="form__register">Create an account</div></Link>
       </form>
     </div>
   );
