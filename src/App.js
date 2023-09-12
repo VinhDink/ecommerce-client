@@ -19,17 +19,13 @@ function App() {
             <Route path="/browsing" element={<BrowsingPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="browsing/product/:id" element={<ProductDetailPage />} />
+            <Route path="/product-manager" element={<ProductManagerPage />} />
+            <Route path="/seller-login" element={<SellerLoginPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </Router>
       </ShopContextProvider>
-      <Router>
-        <Routes>
-          <Route path="/product-manager" element={<ProductManagerPage />} />
-          <Route path="/seller-login" element={<SellerLoginPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </Router>
     </div>
   );
 }

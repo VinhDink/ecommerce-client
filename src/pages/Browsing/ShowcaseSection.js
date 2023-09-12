@@ -1,5 +1,4 @@
 import React from 'react';
-import { PRODUCTS } from "../../data/products";
 import { Product } from "./product";
 import 'bootstrap/dist/css/bootstrap.css';
 import "../../style/shop.css";
@@ -13,7 +12,7 @@ const ShowcaseSection = ({ customerId, products }) => {
                 <div class="row mb-5">
                     <div className="products">
                         {products.map((p) => (
-                            <Product customerId={customerId} data={p} />
+                            <Product data={p} />
                         ))}
                     </div>
                 </div>
