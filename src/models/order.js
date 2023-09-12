@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 const Carts = require('./cart');
 
 const orderSchema = new mongoose.Schema({
-    cart: {
-        type: Schema.Type.ObjectID,
-        ref: 'Carts'
-    },
     address: {
         type: String,
         require: true
