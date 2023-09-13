@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { ShopContext } from "../../context/shop-context";
 import { useState } from "react";
 import axios from "axios";
-import "../../style/productDetails.css";
 
 export const ProductDetails = () => {
   const { id } = useParams();
@@ -34,12 +33,18 @@ export const ProductDetails = () => {
     )
   }
 
-  const { _id, name, imgURL, brand, cost , descrip, category_att} = productFound
+  const displayImage = (imgURL) => {
+    return 'localhost:4000/api/images/' + imgURL
+  }
+
+  const { _id, name, imgURl, brand, cost , descrip, category_att} = productFound
+
+  console.log(imgURl)
 
   return (
     <div className="product-container">
       <div className="product-image-container">
-        <img src={imgURL} alt={name} className="product-image" />
+        <img src={`http://localhost:4000/api/images/${imgURl}`} alt={name} className="product-image" />
       </div>
       <div className="product-details-container">
         <h1 className="product-name">{name}</h1>

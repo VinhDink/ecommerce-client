@@ -46,7 +46,7 @@ const FilterSection = () => {
   const [rangeValue, setRangeValue] = useState(0);
   const [alteredProduct, setAlteredProduct] = useState([]);
   const [checkedCategories, setCheckedCategories] = useState([]);
-  const { userId, PRODUCTS, allCategories, fetchAllProduct, getUser, fetchAllCategories} = useContext(ShopContext)
+  const { userId, PRODUCTS, allCategories, fetchAllProduct, getUser, fetchAllCategories, arrSearched } = useContext(ShopContext)
   
 
   useEffect(() => {
@@ -78,11 +78,20 @@ const FilterSection = () => {
 
   const handeSorting = (e) => {
     e.preventDefault()
-    const filteredArray = PRODUCTS.filter((p) => {
-      return checkedCategories.includes(p.cateId)
-    })
-    const sortedArray = PRODUCTS.filter((p) => {return p.cost > rangeValue})
-    setAlteredProduct(sortedArray, filteredArray)
+
+    // if(arrSearched.length > 0) {
+    //   const filteredArray = arrSearched.filter((p) => {
+    //     return checkedCategories.includes(p.cateId)
+    //   })
+    //   const sortedArray = arrSearched.filter((p) => {return p.cost > rangeValue})
+    //   setAlteredProduct(sortedArray, filteredArray)
+    //   } else {
+      const filteredArray = PRODUCTS.filter((p) => {
+        return checkedCategories.includes(p.cateId)
+      })
+      const sortedArray = PRODUCTS.filter((p) => {return p.cost > rangeValue})
+      setAlteredProduct(sortedArray, filteredArray)
+    
   }
 
   return (
