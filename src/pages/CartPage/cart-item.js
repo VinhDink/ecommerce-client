@@ -1,28 +1,29 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ShopContext } from "../../context/shop-context";
 
-export const CartItem = (props) => {
-  const { id, productName, price, productImage } = props.data;
-  const { cartItems, addToCart, removeFromCart, updateCartItemCount } =
-    useContext(ShopContext);
+export const CartItem = ({data}) => {
+  const { userId, cartItems, addToCart, removeFromCart, updateCartItemCount } = useContext(ShopContext);
 
   return (
-    <div className="cartItem">
-      <img src={productImage} />
-      <div className="description">
-        <p>
-          <b>{productName}</b>
-        </p>
-        <p> Price: ${price.toLocaleString()}</p>
-        <div className="countHandler">
-          <button onClick={() => removeFromCart(id)}> - </button>
-          <input
-            value={cartItems[id]}
-            onChange={(e) => updateCartItemCount(Number(e.target.value), id)}
-          />
-          <button onClick={() => addToCart(id)}> + </button>
+    <Link to={`/browsing/product/${data.product._id}`} className="product-link">
+      <div className="cartItem">
+        <img src={data.product.imgURL} />
+        <div className="description">
+          <p>
+            <b>{data.product.name}</b>
+          </p>
+          <p> Price: ${data.product.cost}</p>
+          <div className="countHandler">
+            <button onClick={() => {removeFromCart(data.product._id, userId)}}> - </button>
+            <input
+              value={data.quantity}
+              onChange={(e) => {console.log("qty change")}}
+            />
+            <button onClick={() => {addToCart(data.product._id, userId)}}> + </button>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
