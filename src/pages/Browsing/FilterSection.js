@@ -54,7 +54,7 @@ const FilterSection = () => {
     getUser();
     fetchAllCategories();
     setAlteredProduct(PRODUCTS)
-  }, []);
+  }, [userId]);
 
   const handleRangeChange = (event) => {
     const newValue = parseInt(event.target.value);

@@ -8,14 +8,16 @@ export const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [PRODUCTS, setPRODUCT] = useState([]);
   const [userId, setUserId] = useState('');
-  const [userCartItem, setUserCartItem] = useState({});
+  const [userCartInfo, setUserCartInfo] = useState({});
   const [allCategories, setAllCategories] = useState([]);
 
   const fetchUserCartItem = async (uid) => {
     try {
       const response = await axios.get(`/customer/${uid}/cart`)
       console.log(response.data)
-      setUserCartItem(response.data)
+      if ( userCartInfo !== response.data.totalCost ) {
+        setUserCartInfo(response.data)
+      }
     } catch (error) {
       console.log(error)
     }
@@ -25,7 +27,9 @@ export const ShopContextProvider = (props) => {
     try {
       const response = await axios.get("/me");
       console.log(response.data.userId);
-      setUserId(response.data.userId);
+      if (userId != response.data.userId) {
+        setUserId(response.data.userId);
+      } else return response.data.userId
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +38,9 @@ export const ShopContextProvider = (props) => {
   const fetchAllProduct = async() => {
     try {
       const response = await axios.get('/browsing/all')
-      setPRODUCT(response.data);
+      if(PRODUCTS != response.data) {
+        setPRODUCT(response.data);
+      }
       console.log("Found PRODUCTS")
     } catch (error) {
       console.error(error);  
@@ -50,14 +56,6 @@ export const ShopContextProvider = (props) => {
       console.error(error);  
     }
   };
-
-  // const getDefaultCart = () => {
-  //   let cart = {};
-  //   for (let i = 1; i < PRODUCTS.length + 1; i++) {
-  //     cart[i] = 0;
-  //   }
-  //   return cart;
-  // };
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;
@@ -76,13 +74,12 @@ export const ShopContextProvider = (props) => {
     .catch((err) => console.log("Failed to addToCart: " + err))
   };
 
-  const removeFromCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+  const removeFromCart = async (itemId, customerId) => {
+    await axios.post(`/browsing/product/${itemId}/removeItemCart/${customerId}`)
+    .then((res) => console.log(res.data))
+    .catch((err) => console.log("Failed to removeFromCart: " + err))
   };
 
-  const updateCartItemCount = (newAmount, itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: newAmount }));
-  };
 
   const checkout = () => {
   };
@@ -90,7 +87,7 @@ export const ShopContextProvider = (props) => {
   const contextValue = {
     cartItems,
     userId,
-    userCartItem,
+    userCartInfo,
     PRODUCTS,
     allCategories,
     getUser,
@@ -98,7 +95,6 @@ export const ShopContextProvider = (props) => {
     fetchAllCategories,
     fetchUserCartItem,
     addToCart,
-    updateCartItemCount,
     removeFromCart,
     getTotalCartAmount,
     checkout,

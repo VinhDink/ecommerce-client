@@ -4,6 +4,7 @@ import  '../style/common.css';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { ProductDetails } from '../pages/ProductDetails/productDetails';
+import "../style/productDetails.css";
 
 const ProductDetailPage = () => {
   return (

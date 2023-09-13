@@ -34,7 +34,7 @@ export const ProductDetails = () => {
     )
   }
 
-  const { _id, name, imgURL, brand, cost , category_att} = productFound
+  const { _id, name, imgURL, brand, cost , descrip, category_att} = productFound
 
   return (
     <div className="product-container">
@@ -47,10 +47,7 @@ export const ProductDetails = () => {
         <div className="product-details">
           <p><b>Price:</b> {cost} $</p>
           <p><b>Description:</b></p>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Quis perspiciatis voluptates possimus, sit necessitatibus in omnis 
-            aut praesentium aspernatur id neque voluptatibus perferendis repellat, 
-            pariatur esse fuga, voluptas sequi numquam!</p>
+          <p>{descrip}</p>
           <p><b>Brand:</b>{brand}</p>
           <button className="addToCartBttn" onClick={() => addToCart(pid, getUser())}>
             Add To Cart {cartItemCount > 0 && <> ({cartItemCount})</>}
