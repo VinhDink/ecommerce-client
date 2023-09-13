@@ -6,14 +6,48 @@ export const ShopContext = createContext(null);
 
 export const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
+  const [PRODUCTS, setPRODUCT] = useState([]);
+  const [userId, setUserId] = useState('');
+  const [userCartItem, setUserCartItem] = useState({});
+  const [allCategories, setAllCategories] = useState([]);
+
+  const fetchUserCartItem = async (uid) => {
+    try {
+      const response = await axios.get(`/customer/${uid}/cart`)
+      console.log(response.data)
+      setUserCartItem(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const getUser = async () => {
     try {
       const response = await axios.get("/me");
-      console.log(response.data);
-      return response.data;
+      console.log(response.data.userId);
+      setUserId(response.data.userId);
     } catch (error) {
-      console.error(error);
+      console.log(error);
+    }
+  };
+
+  const fetchAllProduct = async() => {
+    try {
+      const response = await axios.get('/browsing/all')
+      setPRODUCT(response.data);
+      console.log("Found PRODUCTS")
+    } catch (error) {
+      console.error(error);  
+    }
+  };
+
+  const fetchAllCategories = async() => {
+    try {
+      const response = await axios.get('/browsing/categories')
+      setAllCategories(response.data);
+      console.log("Found Category" + response.data)
+    } catch (error) {
+      console.error(error);  
     }
   };
 
@@ -37,10 +71,9 @@ export const ShopContextProvider = (props) => {
   };
 
   const addToCart = async (itemId, customerId) => {
-    await axios.post(`/browsing/product/${itemId}}/addToCart/${customerId}`)
+    await axios.post(`/browsing/product/${itemId}/addToCart/${customerId}`)
     .then((res) => console.log(res.data))
     .catch((err) => console.log("Failed to addToCart: " + err))
-    // setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
   };
 
   const removeFromCart = (itemId) => {
@@ -56,7 +89,14 @@ export const ShopContextProvider = (props) => {
 
   const contextValue = {
     cartItems,
+    userId,
+    userCartItem,
+    PRODUCTS,
+    allCategories,
     getUser,
+    fetchAllProduct,
+    fetchAllCategories,
+    fetchUserCartItem,
     addToCart,
     updateCartItemCount,
     removeFromCart,
