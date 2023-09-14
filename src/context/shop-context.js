@@ -82,9 +82,13 @@ export const ShopContextProvider = (props) => {
   };
 
   const searchProduct = (string) => {
-    const searched = PRODUCTS.filter((p) => {return p.name.includes(string)})
-    setArrSearched(searched)
-    return searched
+    if(string) {
+      const searched = PRODUCTS.filter((p) => {return p.name.includes(string)})
+      setArrSearched(searched)
+    }
+    if(!string) { setArrSearched (PRODUCTS)}
+    
+    console.log(arrSearched)
   }
 
   const checkout = () => {
@@ -97,6 +101,7 @@ export const ShopContextProvider = (props) => {
     PRODUCTS,
     allCategories,
     arrSearched,
+    setArrSearched,
     getUser,
     fetchAllProduct,
     fetchAllCategories,

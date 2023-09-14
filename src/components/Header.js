@@ -18,10 +18,6 @@ const Header = () => {
     const response = axios.post("/search", {search: inputValue});
   };
 
-  const handleSearch = (inputString) => {
-    searchProduct(inputString)
-  }
-
   return (
     <header class="header">
       <div class="header__box">
@@ -40,7 +36,7 @@ const Header = () => {
             value={inputValue}
             onChange={handleInputChange}
           ></input>
-          <button class="header__search-button" onClick={()=> {handleSearch(inputValue)}}>
+          <button class="header__search-button" onClick={()=> {searchProduct(inputValue)}}>
             <i class="bi bi-search"></i>
           </button>
         </div>
