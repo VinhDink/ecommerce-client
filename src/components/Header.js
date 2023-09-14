@@ -1,12 +1,14 @@
 import "../style/header.css";
 import "../style/common.css";
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "../config";
+import { ShopContext } from "../context/shop-context";
 
 const Header = () => {
   const location = useLocation();
   const [inputValue, setInputValue] = useState("");
+  const { searchProduct } = useContext(ShopContext)
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -34,7 +36,7 @@ const Header = () => {
             value={inputValue}
             onChange={handleInputChange}
           ></input>
-          <button class="header__search-button" onClick={handleSubmit}>
+          <button class="header__search-button" onClick={()=> {searchProduct(inputValue)}}>
             <i class="bi bi-search"></i>
           </button>
         </div>

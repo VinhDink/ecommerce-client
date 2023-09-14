@@ -10,7 +10,7 @@ export const Product = ({ data }) => {
   return (
     <div className="product">
       <Link to={`/browsing/product/${data._id}`} className="product-link">
-        <img src={data.imgURL} />
+        <img src={`http://localhost:4000/api/images/${data.imgURl}`} alt={data.imgURl} />
         <div className="description">
           <p>
             <b>{data.name}</b>

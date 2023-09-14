@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState } from 'react';
 import axios from 'axios';
@@ -46,15 +46,18 @@ const FilterSection = () => {
   const [rangeValue, setRangeValue] = useState(0);
   const [alteredProduct, setAlteredProduct] = useState([]);
   const [checkedCategories, setCheckedCategories] = useState([]);
-  const { userId, PRODUCTS, allCategories, fetchAllProduct, getUser, fetchAllCategories} = useContext(ShopContext)
-  
+  const { userId, PRODUCTS, allCategories, fetchAllProduct, getUser, fetchAllCategories, arrSearched, setArrSearched} = useContext(ShopContext)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    setArrSearched(PRODUCTS)
+  },[])
+
+  useEffect(() => { 
     fetchAllProduct();
     getUser();
     fetchAllCategories();
-    setAlteredProduct(PRODUCTS)
-  }, [userId]);
+    setAlteredProduct(arrSearched)
+  }, [userId, arrSearched]);
 
   const handleRangeChange = (event) => {
     const newValue = parseInt(event.target.value);
@@ -62,11 +65,14 @@ const FilterSection = () => {
   };
 
   const handleFiltersChange = (cid) => {
-    if (checkedCategories.includes(cid)) {
-      setCheckedCategories(checkedCategories.filter((cate) => {return cate !== cid}));
-    } else {
-      setCheckedCategories([...checkedCategories, cid]);
-    }
+    setCheckedCategories((prevCategories) => {
+      const isChecked = prevCategories.includes(cid)
+      if (isChecked) {
+        return prevCategories.filter((cate) => {return cate !== cid});
+      } else {
+        return [...prevCategories, cid];
+      }
+    })
     console.log(checkedCategories)
   };
 
@@ -78,11 +84,17 @@ const FilterSection = () => {
 
   const handeSorting = (e) => {
     e.preventDefault()
-    const filteredArray = PRODUCTS.filter((p) => {
-      return checkedCategories.includes(p.cateId)
-    })
-    const sortedArray = PRODUCTS.filter((p) => {return p.cost > rangeValue})
-    setAlteredProduct(sortedArray, filteredArray)
+
+    let filteredArray;
+    let sortedArray;
+    
+    if(checkedCategories.length == 0) {
+      filteredArray = arrSearched
+    } else {
+      filteredArray = arrSearched.filter((p) => { return checkedCategories.includes(p.cateId) })
+    }
+    sortedArray = filteredArray.filter((p) => { return p.cost > rangeValue })
+    setAlteredProduct(sortedArray)
   }
 
   return (

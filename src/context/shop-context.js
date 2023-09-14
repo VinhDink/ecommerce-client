@@ -9,6 +9,7 @@ export const ShopContextProvider = (props) => {
   const [PRODUCTS, setPRODUCT] = useState([]);
   const [userId, setUserId] = useState('');
   const [userCartInfo, setUserCartInfo] = useState({});
+  const [arrSearched, setArrSearched] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
 
   const fetchUserCartItem = async (uid) => {
@@ -80,6 +81,15 @@ export const ShopContextProvider = (props) => {
     .catch((err) => console.log("Failed to removeFromCart: " + err))
   };
 
+  const searchProduct = (string) => {
+    if(string) {
+      const searched = PRODUCTS.filter((p) => {return p.name.includes(string)})
+      setArrSearched(searched)
+    }
+    if(!string) { setArrSearched (PRODUCTS)}
+    
+    console.log(arrSearched)
+  }
 
   const checkout = () => {
   };
@@ -90,6 +100,9 @@ export const ShopContextProvider = (props) => {
     userCartInfo,
     PRODUCTS,
     allCategories,
+    arrSearched,
+    setCartItems,
+    setArrSearched,
     getUser,
     fetchAllProduct,
     fetchAllCategories,
@@ -97,6 +110,7 @@ export const ShopContextProvider = (props) => {
     addToCart,
     removeFromCart,
     getTotalCartAmount,
+    searchProduct,
     checkout,
   };
 
