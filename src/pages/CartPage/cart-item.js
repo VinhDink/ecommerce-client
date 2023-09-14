@@ -6,14 +6,17 @@ export const CartItem = ({data}) => {
   const { userId, cartItems, addToCart, removeFromCart, updateCartItemCount } = useContext(ShopContext);
 
   return (
-    <Link to={`/browsing/product/${data.product._id}`} className="product-link">
+    <>
       <div className="cartItem">
-        <img src={data.product.imgURL} />
+        <Link to={`/browsing/product/${data.product._id}`} className="product-link">
+          <img src={`http://localhost:4000/api/images/${data.product.imgURl}`} />
+        </Link>
         <div className="description">
           <p>
             <b>{data.product.name}</b>
           </p>
           <p> Price: ${data.product.cost}</p>
+          
           <div className="countHandler">
             <button onClick={() => {removeFromCart(data.product._id, userId)}}> - </button>
             <input
@@ -24,6 +27,6 @@ export const CartItem = ({data}) => {
           </div>
         </div>
       </div>
-    </Link>
+    </>
   );
 };
