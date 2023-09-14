@@ -101,6 +101,7 @@ export const ShopContextProvider = (props) => {
     PRODUCTS,
     allCategories,
     arrSearched,
+    setCartItems,
     setArrSearched,
     getUser,
     fetchAllProduct,
