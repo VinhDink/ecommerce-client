@@ -23,6 +23,7 @@ const Login = () => {
       const response = await axios.post("/login/seller", formData);
       console.log(response.data);
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("loggedIn", true);
       navigate('/product-manager');
     } catch (error) {
       console.error(error);

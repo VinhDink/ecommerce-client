@@ -8,14 +8,19 @@ import { ShopContext } from "../context/shop-context";
 const Header = () => {
   const location = useLocation();
   const [inputValue, setInputValue] = useState("");
-  const { searchProduct } = useContext(ShopContext)
+  const { searchProduct } = useContext(ShopContext);
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("loggedIn");
+  };
+
   const handleSubmit = (event) => {
-    event.preventDefault(); 
-    const response = axios.post("/search", {search: inputValue});
+    event.preventDefault();
+    const response = axios.post("/search", { search: inputValue });
   };
 
   return (
@@ -36,18 +41,34 @@ const Header = () => {
             value={inputValue}
             onChange={handleInputChange}
           ></input>
-          <button class="header__search-button" onClick={()=> {searchProduct(inputValue)}}>
+          <button
+            class="header__search-button"
+            onClick={() => {
+              searchProduct(inputValue);
+            }}
+          >
             <i class="bi bi-search"></i>
           </button>
         </div>
-        <div class="header__cart">
-          <i class="bi bi-bag"></i>
-        </div>
+        <Link
+          to="/cart"
+          style={{ textDecoration: "none" }}
+          id="cartlink"
+          className={location.pathname === "/cart" ? "active-link" : ""}
+        >
+          <div class="header__cart">
+            <i class="bi bi-bag"></i>
+          </div>
+        </Link>
         <div>
-          <Link to="/seller-login"
-          style={{ textDecoration: "none" }}>Login</Link> | 
-          <Link to="/seller-register"
-          style={{ textDecoration: "none" }}>Register</Link></div>
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            Login
+          </Link>{" "}
+          |
+          <Link to="/register" style={{ textDecoration: "none" }}>
+            Register
+          </Link>
+        </div>
         <div className="links">
           <Link
             to="/browsing"
@@ -56,15 +77,11 @@ const Header = () => {
           >
             Shop
           </Link>
-
-          <Link
-            to="/cart"
-            style={{ textDecoration: "none" }}
-            id="cartlink"
-            className={location.pathname === "/cart" ? "active-link" : ""}
-          >
-            Cart
-          </Link>
+        </div>
+        <div className="links">
+          <button class="btn btn-danger">
+            Logout
+          </button>
         </div>
       </div>
     </header>
