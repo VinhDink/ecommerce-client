@@ -8,7 +8,6 @@ import  ProductManager from '../pages/seller/ProductManager';
 const ProductManagerPage = () => {
   return (
     <>
-        <Header />
         <div className='product-Detail'>
             <ProductManager />
         </div>

@@ -63,6 +63,7 @@ const Login = () => {
           Login
         </button>      
           <Link to={'/register'} class="form__register">Create an account</Link>
+          <Link to={'/seller-login'} class="form__register">Login as seller</Link>
       </form>
     </div>
   );

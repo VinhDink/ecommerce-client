@@ -25,6 +25,18 @@ const ProductManager = () => {
     }
   };
 
+  const getCategoryName = async (cateId) => {
+    try {
+      const response = await axios.post("/category-name",{
+      cateId: cateId});
+      console.log(response.data);
+      setLoading(false);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -42,6 +54,21 @@ const ProductManager = () => {
     };
 
     getProduct();
+  }, []);
+
+//get category
+  useEffect(() => {
+    const getCategory = async () => {
+      try {
+        const response = await axios.get("/category");
+        console.log(response.data);
+        setLoading(false);
+        setCategory(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getCategory();
   }, []);
 
   const setDefault = (_id) => {
@@ -181,19 +208,21 @@ const ProductManager = () => {
           <h1>Product manager</h1>
           <div class="pm__filter-sort">
             <div>
-              Filter by Category:
+          {/* filter using all category fetched */}
+              Filter:
               <select
-                name="brand"
-                id="brand"
-                onChange={handleFilterChange}
+                name="filter"
+                id="filter"
                 value={filterValue}
+                onChange={handleFilterChange}
               >
                 <option value="all">All</option>
-                <option value="Laptop">Laptop</option>
-                <option value="Screen">Screen</option>
-                <option value="Keyboard">Keyboard</option>
-                <option value="Mouse">Mouse</option>
-                <option value="Header">Header</option>
+                {category &&
+                  category.map((category) => (
+                    <option key={category._id} value={category._id}>
+                      {category.name}
+                    </option>
+                  ))}
               </select>
             </div>
             <div>
@@ -226,7 +255,7 @@ const ProductManager = () => {
             <tr>
               <th class="text-center">Index</th>
               <th class="text-center">Name</th>
-              <th class="text-center">Category</th>
+              <th class="text-center">Category ID</th>
               <th class="text-center">Brand</th>
               <th class="text-center">Cost</th>
               <th class="text-center">Date</th>
@@ -235,7 +264,7 @@ const ProductManager = () => {
               <tr>
                 <td>{index + 1}</td>
                 <td>{item.name}</td>
-                <td>{item.category}</td>
+                <td>{item.cateId}</td>
                 <td>{item.brand}</td>
                 <td>{item.cost}</td>
                 <td>{item.date}</td>

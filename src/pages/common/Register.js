@@ -11,6 +11,11 @@ const Register = () => {
   };
 
   const handleSubmit = async (e) => {
+
+    if (formData.password !== formData.confirmPassword) {
+      alert("passwords do not match");
+      return;
+    }
     e.preventDefault();
     try {
       const response = await axios.put('/customer', formData);

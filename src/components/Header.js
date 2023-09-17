@@ -4,8 +4,10 @@ import { Link, useLocation } from "react-router-dom";
 import { useContext, useState } from "react";
 import axios from "../config";
 import { ShopContext } from "../context/shop-context";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const [inputValue, setInputValue] = useState("");
   const { searchProduct } = useContext(ShopContext);
@@ -16,6 +18,7 @@ const Header = () => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("loggedIn");
+    navigate("/login");
   };
 
   const handleSubmit = (event) => {
@@ -79,7 +82,17 @@ const Header = () => {
           </Link>
         </div>
         <div className="links">
-          <button class="btn btn-danger">
+          <Link
+            to="/customer-order-manager"
+            style={{ textDecoration: "none" }}
+            className={location.pathname === "/" ? "active-link" : ""}
+          >
+            Order manager
+          </Link>
+        </div>
+        <div className="links">
+          <button class="btn btn-danger" onClick={() => 
+            logout()}> 
             Logout
           </button>
         </div>

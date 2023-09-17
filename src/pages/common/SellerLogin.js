@@ -63,6 +63,8 @@ const Login = () => {
         </button>
         <Link to="/seller-register"
           style={{ textDecoration: "none" }}><div class="form__register">Create an account</div></Link>
+          <Link to="/login"
+          style={{ textDecoration: "none" }}><div class="form__register">login as customer</div></Link>
       </form>
     </div>
   );

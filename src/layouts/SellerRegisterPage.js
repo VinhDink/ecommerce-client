@@ -8,7 +8,6 @@ import SellerRegister from '../pages/common/SellerRegister';
 const SellerRegisterPage = () => {
   return (
     <>
-        <Header />
         <div className='product-Detail'>
             <SellerRegister />
         </div>

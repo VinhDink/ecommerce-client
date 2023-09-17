@@ -11,6 +11,10 @@ const Register = () => {
   };
 
   const handleSubmit = async (e) => {
+    // if (formData.password !== formData.confirmPassword) {
+    //   alert("passwords do not match");
+    //   return;
+    // }
     e.preventDefault();
     try {
       const response = await axios.put('/seller', formData);
@@ -42,7 +46,7 @@ const Register = () => {
         </div>
         <div class="form__input-box">
           <label for="confirm-password" class="form__input-label">Confirm password</label>
-          <input type="confirm-password" class="form__input" />
+          <input type="password" class="form__input" value={formData.confirmPassword} onChange={handleChange}/>
         </div>
         <button type="submit" class="form__button form__button--state-primary">
           Register

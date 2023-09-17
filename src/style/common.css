@@ -89,3 +89,22 @@ td {
     --defaultYellowBorder: #FCD200;
 
 }
+
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Make sure the container takes the full viewport height */
+  }
+  
+  /* Style the Cart-Page to take up remaining space */
+  .Cart-Page {
+    flex-grow: 1;
+  }
+  
+  /* Style the Footer to stay at the bottom */
+  .Footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }

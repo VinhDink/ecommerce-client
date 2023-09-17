@@ -8,7 +8,6 @@ import SellerLogin from '../pages/common/SellerLogin';
 const SellerLoginPage = () => {
   return (
     <>
-        <Header />
         <div className='product-Detail'>
             <SellerLogin />
         </div>
